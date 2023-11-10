@@ -16,13 +16,10 @@ namespace Persistence.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseCollation("utf8mb4_0900_ai_ci")
                 .HasAnnotation("ProductVersion", "7.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            MySqlModelBuilderExtensions.HasCharSet(modelBuilder, "utf8mb4");
-
-            modelBuilder.Entity("Persistence.Entities.City", b =>
+            modelBuilder.Entity("Domain.Entities.City", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +42,7 @@ namespace Persistence.Data.Migrations
                     b.ToTable("city", (string)null);
                 });
 
-            modelBuilder.Entity("Persistence.Entities.Country", b =>
+            modelBuilder.Entity("Domain.Entities.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +60,7 @@ namespace Persistence.Data.Migrations
                     b.ToTable("country", (string)null);
                 });
 
-            modelBuilder.Entity("Persistence.Entities.Customer", b =>
+            modelBuilder.Entity("Domain.Entities.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -100,7 +97,7 @@ namespace Persistence.Data.Migrations
                     b.ToTable("customer", (string)null);
                 });
 
-            modelBuilder.Entity("Persistence.Entities.PersonType", b =>
+            modelBuilder.Entity("Domain.Entities.PersonType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,7 +115,7 @@ namespace Persistence.Data.Migrations
                     b.ToTable("person_type", (string)null);
                 });
 
-            modelBuilder.Entity("Persistence.Entities.State", b =>
+            modelBuilder.Entity("Domain.Entities.State", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -141,9 +138,9 @@ namespace Persistence.Data.Migrations
                     b.ToTable("state", (string)null);
                 });
 
-            modelBuilder.Entity("Persistence.Entities.City", b =>
+            modelBuilder.Entity("Domain.Entities.City", b =>
                 {
-                    b.HasOne("Persistence.Entities.State", "IdstateFkNavigation")
+                    b.HasOne("Domain.Entities.State", "IdstateFkNavigation")
                         .WithMany("Cities")
                         .HasForeignKey("IdstateFk")
                         .IsRequired();
@@ -151,14 +148,14 @@ namespace Persistence.Data.Migrations
                     b.Navigation("IdstateFkNavigation");
                 });
 
-            modelBuilder.Entity("Persistence.Entities.Customer", b =>
+            modelBuilder.Entity("Domain.Entities.Customer", b =>
                 {
-                    b.HasOne("Persistence.Entities.PersonType", "IdTipoPersonaFkNavigation")
+                    b.HasOne("Domain.Entities.PersonType", "IdTipoPersonaFkNavigation")
                         .WithMany("Customers")
                         .HasForeignKey("IdTipoPersonaFk")
                         .IsRequired();
 
-                    b.HasOne("Persistence.Entities.City", "IdcityFkNavigation")
+                    b.HasOne("Domain.Entities.City", "IdcityFkNavigation")
                         .WithMany("Customers")
                         .HasForeignKey("IdcityFk")
                         .IsRequired();
@@ -168,9 +165,9 @@ namespace Persistence.Data.Migrations
                     b.Navigation("IdcityFkNavigation");
                 });
 
-            modelBuilder.Entity("Persistence.Entities.State", b =>
+            modelBuilder.Entity("Domain.Entities.State", b =>
                 {
-                    b.HasOne("Persistence.Entities.Country", "IdcountryFkNavigation")
+                    b.HasOne("Domain.Entities.Country", "IdcountryFkNavigation")
                         .WithMany("States")
                         .HasForeignKey("IdcountryFk")
                         .IsRequired();
@@ -178,22 +175,22 @@ namespace Persistence.Data.Migrations
                     b.Navigation("IdcountryFkNavigation");
                 });
 
-            modelBuilder.Entity("Persistence.Entities.City", b =>
+            modelBuilder.Entity("Domain.Entities.City", b =>
                 {
                     b.Navigation("Customers");
                 });
 
-            modelBuilder.Entity("Persistence.Entities.Country", b =>
+            modelBuilder.Entity("Domain.Entities.Country", b =>
                 {
                     b.Navigation("States");
                 });
 
-            modelBuilder.Entity("Persistence.Entities.PersonType", b =>
+            modelBuilder.Entity("Domain.Entities.PersonType", b =>
                 {
                     b.Navigation("Customers");
                 });
 
-            modelBuilder.Entity("Persistence.Entities.State", b =>
+            modelBuilder.Entity("Domain.Entities.State", b =>
                 {
                     b.Navigation("Cities");
                 });
