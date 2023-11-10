@@ -9,6 +9,6 @@ namespace Domain.Interfaces
 {
     public interface IState : IGenericRepository<State>
     {
-        
+        Task<State> GetCityByNameState (string name);
     }
 }

@@ -6,10 +6,10 @@ using Domain.Entities;
 
 namespace API.Dtos
 {
-    public class CountryDepDto
+    public class StateCityDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<State> States { get; set; }
+        public List<CityDto> Cities { get; set; } = null!;
     }
 }

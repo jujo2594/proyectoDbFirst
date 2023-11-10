@@ -9,7 +9,7 @@ namespace Domain.Interfaces
 {
     public interface ICountry : IGenericRepository<Country>
     {
-        Task<Country> GetCountryByName(string name);
-        Task<Country> GetCountryByNameSate (string name);
+        Task<Country> getCountryByName(string name);
+        Task<IEnumerable<Country>> getCountryByNameState (string name);
     }
 }

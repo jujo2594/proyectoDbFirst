@@ -15,7 +15,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
 builder.Services.ConfigureCors();
+builder.Services.AddApplicationServices();
 builder.Services.ConfigureRateLimiting();
+
 
 builder.Services.AddDbContext<ejemploDbContext>(optionsBuilder =>
 {

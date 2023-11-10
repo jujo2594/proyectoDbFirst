@@ -50,7 +50,7 @@ namespace API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<CountryDto>> GetCountryByName(string name)
         {
-            var country = await _unitOfWork.Countries.GetCountryByName(name);
+            var country = await _unitOfWork.Countries.getCountryByName(name);
             if(country == null)
             {
                 return NotFound();
@@ -62,14 +62,14 @@ namespace API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<CountryDepDto>> GetCountryByNameState(string name)
+        public async Task<ActionResult<IEnumerable<CountryDto>>> GetCountryByNameState(string name)
         {
-            var country = await _unitOfWork.Countries.GetCountryByNameSate(name);
+            var country = await _unitOfWork.Countries.getCountryByNameState(name);
             if(country == null)
             {
                 return NotFound();
             }
-            return _mapper.Map<CountryDepDto>(country);
+            return _mapper.Map<List<CountryDto>>(country);
         }
 
         [HttpPost]

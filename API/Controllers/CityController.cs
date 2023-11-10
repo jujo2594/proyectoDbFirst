@@ -44,6 +44,20 @@ namespace API.Controllers
             return _mapper.Map<CityDto>(result);
         }
 
+        [HttpGet("getCustomerByCity/{name}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<CityDto>>> GetCustomerByCity(string name)
+        {
+            var result = await _unitOfWork.Cities.getCustomerByCity(name);
+            if(result == null)
+            {
+                return NotFound();
+            }
+            return _mapper.Map<List<CityDto>>(result);
+        }
+
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

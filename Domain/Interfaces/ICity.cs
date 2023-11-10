@@ -9,6 +9,6 @@ namespace Domain.Interfaces
 {
     public interface ICity : IGenericRepository<City>
     {
-        
+        Task<IEnumerable<City>> getCustomerByCity(string name);
     }
 }
